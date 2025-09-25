@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TastyPlate - Discover Amazing Recipes</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="main-content">
+        <!-- Navigation -->
+        <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-utensils"></i>
+            <span>TastyPlate</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#recipes" class="nav-link">Recipes</a>
+            <a href="#categories" class="nav-link">Categories</a>
+            <a href="#about" class="nav-link">About</a>
+        </div>
+        <div class="nav-actions">
+            <button id="login-btn" class="btn btn-outline">Sign In</button>
+            <button id="signup-btn" class="btn btn-primary">Sign Up</button>
+            <div id="user-menu" style="display: none;">
+                <button class="btn-user">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="username-display"></span>
+                </button>
+                <button id="logout-btn" class="btn btn-outline">Logout</button>
+                <button id="add-recipe-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Recipe
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Auth Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Sign In</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <div id="login-form" class="auth-form active">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your account</p>
+                <div class="form-group">
+                    <input type="text" id="login-username" placeholder="Username" class="form-input">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="login-password" placeholder="Password" class="form-input">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button id="login-submit" class="btn btn-primary btn-full">Sign In</button>
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                <div class="social-auth">
+                    <button class="btn-social google">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button class="btn-social facebook">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                </div>
+            </div>
+
+            <div id="signup-form" class="auth-form">
+                <h2>Join TastyPlate</h2>
+                <p>Create your account to save recipes</p>
+                <div class="form-group">
+                    <input type="text" id="signup-username" placeholder="Username" class="form-input">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signup-email" placeholder="Email address" class="form-input">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signup-password" placeholder="Password" class="form-input">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signup-confirm-password" placeholder="Confirm Password" class="form-input">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button id="signup-submit" class="btn btn-primary btn-full">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover & Share <span class="highlight">Amazing Recipes</span></h1>
+            <p>Find the perfect recipe for any occasion with our curated collection of 100+ delicious dishes</p>
+            <div class="hero-search">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search recipes, ingredients, or cuisines...">
+                    <button id="search-btn" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">RECIPES TRIED & LOVED</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">YOUR GO-TO CUISINES</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Available</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-card card-1">
+                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Featured Recipe">
+                <div class="card-badge">Trending</div>
+            </div>
+            <div class="floating-card card-2">
+                <img src="https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Chicken Curry">
+                <div class="card-badge">Popular</div>
+            </div>
+            <div class="floating-card card-3">
+                <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Dessert">
+                <div class="card-badge">Sweet</div>
+            </div>
+            <div class="floating-card card-4">
+                <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Healthy Food">
+                <div class="card-badge">Healthy</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="section-header">
+            <h2>Find Your Perfect Recipe</h2>
+            <p>Filter by your preferences</p>
+        </div>
+        <div class="filters-grid">
+            <div class="filter-group">
+                <label>Cuisine</label>
+                <select id="cuisine-filter" class="filter-select">
+                    <option value="">All Cuisines</option>
+                    <option value="italian">Italian</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="indian">Indian</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="american">American</option>
+                    <option value="french">French</option>
+                    <option value="thai">Thai</option>
+                    <option value="japanese">Japanese</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Difficulty</label>
+                <select id="difficulty-filter" class="filter-select">
+                    <option value="">All Levels</option>
+                    <option value="EASY">Easy</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HARD">Hard</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Time</label>
+                <select id="time-filter" class="filter-select">
+                    <option value="">Any Time</option>
+                    <option value="15">Quick (15 min)</option>
+                    <option value="30">Under 30 min</option>
+                    <option value="60">Under 1 hour</option>
+                    <option value="120">Under 2 hours</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Category</label>
+                <select id="category-filter" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="gluten-free">Gluten Free</option>
+                    <option value="keto">Keto</option>
+                    <option value="low-carb">Low Carb</option>
+                    <option value="dessert">Dessert</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="dinner">Dinner</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section class="recipes-section" id="recipes">
+        <div class="section-header">
+            <h2>Featured Recipes</h2>
+            <p>Discover our handpicked collection of delicious recipes</p>
+        </div>
+        <div class="recipes-grid" id="recipes-container">
+            <!-- Fallback recipes - will be replaced by JavaScript -->
+            <div class="recipe-card">
+                <div class="recipe-image">
+
+                    <div class="recipe-badge medium">MEDIUM</div>
+                </div>
+                <div class="recipe-content">
+                    <h3 class="recipe-title">Classic Spaghetti Carbonara</h3>
+                    <p class="recipe-description">A traditional Italian pasta dish with eggs, cheese, and pancetta. Rich and creamy without cream!</p>
+                    <div class="recipe-meta">
+                        <span><i class="fas fa-clock"></i> 20 min</span>
+                        <span><i class="fas fa-chart-line"></i> MEDIUM</span>
+                        <span><i class="fas fa-globe"></i> Italian</span>
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn btn-outline view-recipe" data-id="1" type="button">
+                            <i class="fas fa-eye"></i> View Recipe
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-image">
+
+                    <div class="recipe-badge easy">EASY</div>
+                </div>
+                <div class="recipe-content">
+                    <h3 class="recipe-title">Chocolate Chip Cookies</h3>
+                    <p class="recipe-description">Soft and chewy homemade chocolate chip cookies. Perfect for any occasion!</p>
+                    <div class="recipe-meta">
+                        <span><i class="fas fa-clock"></i> 30 min</span>
+                        <span><i class="fas fa-chart-line"></i> EASY</span>
+                        <span><i class="fas fa-globe"></i> American</span>
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn btn-outline view-recipe" data-id="2" type="button">
+                            <i class="fas fa-eye"></i> View Recipe
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-image">
+                    <div class="recipe-badge hard">HARD</div>
+                </div>
+                <div class="recipe-content">
+                    <h3 class="recipe-title">Chicken Tikka Masala</h3>
+                    <p class="recipe-description">Aromatic Indian curry with tender chicken in a rich, creamy tomato sauce. Spicy and flavorful!</p>
+                    <div class="recipe-meta">
+                        <span><i class="fas fa-clock"></i> 60 min</span>
+                        <span><i class="fas fa-chart-line"></i> HARD</span>
+                        <span><i class="fas fa-globe"></i> Indian</span>
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn btn-outline view-recipe" data-id="3" type="button">
+                            <i class="fas fa-eye"></i> View Recipe
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-image">
+
+                    <div class="recipe-badge easy">EASY</div>
+                </div>
+                <div class="recipe-content">
+                    <h3 class="recipe-title">Margherita Pizza</h3>
+                    <p class="recipe-description">Classic Italian pizza with fresh tomatoes, mozzarella, and basil. Simple yet delicious!</p>
+                    <div class="recipe-meta">
+                        <span><i class="fas fa-clock"></i> 45 min</span>
+                        <span><i class="fas fa-chart-line"></i> EASY</span>
+                        <span><i class="fas fa-globe"></i> Italian</span>
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn btn-outline view-recipe" data-id="4" type="button">
+                            <i class="fas fa-eye"></i> View Recipe
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe-card">
+                <div class="recipe-image">
+
+                    <div class="recipe-badge medium">MEDIUM</div>
+                </div>
+                <div class="recipe-content">
+                    <h3 class="recipe-title">Chocolate Cake</h3>
+                    <p class="recipe-description">Rich, moist chocolate cake with creamy frosting. Perfect for birthdays and celebrations!</p>
+                    <div class="recipe-meta">
+                        <span><i class="fas fa-clock"></i> 90 min</span>
+                        <span><i class="fas fa-chart-line"></i> MEDIUM</span>
+                        <span><i class="fas fa-globe"></i> American</span>
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn btn-outline view-recipe" data-id="6" type="button">
+                            <i class="fas fa-eye"></i> View Recipe
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-image">
+
+                    <div class="recipe-badge easy">EASY</div>
+                </div>
+                <div class="recipe-content">
+                    <h3 class="recipe-title">Chicken biriyani</h3>
+                    <p class="recipe-description">Fragrant basmati rice with tender spiced chicken, layered with caramelized onions, fresh herbs, and a warm, complex blend of toasted spices. .</p>
+                    <div class="recipe-meta">
+                        <span><i class="fas fa-clock"></i> 2 hours</span>
+                        <span><i class="fas fa-chart-line"></i> MEDIUM</span>
+                        <span><i class="fas fa-globe"></i> Indian</span>
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn btn-outline view-recipe" data-id="7" type="button">
+                            <i class="fas fa-eye"></i> View Recipe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="recipe-card">
+                <div class="recipe-image">
+
+                    <div class="recipe-badge hard">HARD</div>
+                </div>
+                <div class="recipe-content">
+                    <h3 class="recipe-title">Pad Thai</h3>
+                    <p class="recipe-description">Authentic Thai stir-fried noodles with shrimp, tofu, and vegetables in a sweet and tangy sauce.</p>
+                    <div class="recipe-meta">
+                        <span><i class="fas fa-clock"></i> 40 min</span>
+                        <span><i class="fas fa-chart-line"></i> HARD</span>
+                        <span><i class="fas fa-globe"></i> Thai</span>
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn btn-outline view-recipe" data-id="8" type="button">
+                            <i class="fas fa-eye"></i> View Recipe
+                        </button>
+                    </div>
+                </div>
+            </div><!-- Add this right after the existing load-more button in the recipes section -->
+
+        </div>
+        <!-- Load More Recipes Button -->
+        <div class="load-more" style="text-align: center; margin: 3rem 0; padding: 2rem; display: block !important;">
+            <button id="load-more-btn" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.2rem; font-weight: 600; border-radius: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); text-transform: uppercase; letter-spacing: 0.5px; display: block !important;">
+                <i class="fas fa-plus" style="margin-right: 0.5rem;"></i> Load More Recipes
+            </button>
+        </div>
+    </section>
+
+    <!-- Recipe Modal Container -->
+    <div class="modal" id="recipe-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="recipe-modal-content">
+                <!-- Recipe details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-header">
+            <h2>About TastyPlate</h2>
+            <p>Discover the story behind our recipe platform</p>
+        </div>
+        <div class="about-content">
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>We believe that cooking should be accessible, enjoyable, and inspiring for everyone. TastyPlate connects food lovers from around the world through the universal language of delicious recipes.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Driven</h3>
+                    <p>Our platform thrives on the contributions of passionate home cooks, professional chefs, and food enthusiasts who share their favorite recipes and cooking tips.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Quality First</h3>
+                    <p>Every recipe is carefully curated and tested to ensure you get the best results in your kitchen. We focus on clear instructions, quality ingredients, and delicious outcomes.</p>
+                </div>
+            </div>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">RECIPES TRIED & LOVED</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">YOUR GO-TO CUISINES</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">SHOPPING LIST ITEMS</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$500+</span>
+                    <span class="stat-label">MONEY SAVED</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Recipe Section -->
+    <section id="add-recipe-section" class="add-recipe-section">
+        <div class="section-header">
+            <h2>Share Your Recipe</h2>
+            <p>Contribute to our growing community</p>
+        </div>
+        <div class="form-container">
+            <form id="recipe-form" class="recipe-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="recipe-name">Recipe Name *</label>
+                        <input type="text" id="recipe-name" placeholder="e.g., Chocolate Chip Cookies" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-image">Image URL *</label>
+                        <input type="url" id="recipe-image" placeholder="https://example.com/image.jpg" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-ingredients">Ingredients (one per line) *</label>
+                    <textarea id="recipe-ingredients" placeholder="2 cups flour&#10;1 cup sugar&#10;3 eggs" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-instructions">Instructions *</label>
+                    <textarea id="recipe-instructions" placeholder="Step 1: Preheat oven to 350°F&#10;Step 2: Mix dry ingredients..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="recipe-cooking-time">Cooking Time (minutes) *</label>
+                        <input type="number" id="recipe-cooking-time" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-difficulty">Difficulty *</label>
+                        <select id="recipe-difficulty" required>
+                            <option value="EASY">Easy</option>
+                            <option value="MEDIUM">Medium</option>
+                            <option value="HARD">Hard</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="recipe-cuisine">Cuisine</label>
+                        <input type="text" id="recipe-cuisine" placeholder="e.g., Italian, Mexican">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-category">Category</label>
+                        <select id="recipe-category">
+                            <option value="">Select Category</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="gluten-free">Gluten Free</option>
+                            <option value="keto">Keto</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="breakfast">Breakfast</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="reset" class="btn btn-outline">Clear Form</button>
+                    <button type="submit" class="btn btn-primary">Share Recipe</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <i class="fas fa-utensils"></i>
+                    <span>TastyPlate</span>
+                </div>
+                <p>Discover, create, and share amazing recipes with our community of food lovers.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#recipes">Recipes</a>
+                <a href="#categories">Categories</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 TastyPlate. All rights reserved.</p>
+        </div>
+    </footer>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+    <p>Loading delicious recipes...</p>
+</div>
+
+<script src="/js/auth.js"></script>
+<script src="/js/recipes.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

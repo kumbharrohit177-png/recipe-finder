@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: recipe-finder
+    env: docker
+    plan: free
+    autoDeploy: true
+    dockerfilePath: Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: "8080"

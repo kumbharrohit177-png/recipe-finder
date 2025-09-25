@@ -1,0 +1,17 @@
+# Maven
+target/
+.mvn/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.idea/
+*.iml
+
+# OS files
+*.log
+.DS_Store
+Thumbs.db
